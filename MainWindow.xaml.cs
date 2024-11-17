@@ -27,16 +27,16 @@ namespace TrayWeek
 
         public Icon StringToIcon(string input)
         {
-            Font font = new Font("Arial", 10, System.Drawing.FontStyle.Bold);
-            Brush brush = new SolidBrush(Color.White);
+            Font font = new Font("Lucida Console", 16, System.Drawing.FontStyle.Regular);
+            Brush brush = new SolidBrush(Color.Black);
 
-            Bitmap bitmap = new Bitmap(16, 16);
+            Bitmap bitmap = new Bitmap(24, 24);
             bitmap.MakeTransparent(Color.Black);
             Graphics graphics = Graphics.FromImage(bitmap);
-            var stringSize = graphics.MeasureString(input, font, 24);
+            var stringSize = graphics.MeasureString(input, font, 32);
 
             //graphics.Clear(Color.Black);
-            graphics.DrawString(input, font, brush, 8-stringSize.Width/2, 8-stringSize.Height/2);
+            graphics.DrawString(input, font, brush, 6-stringSize.Width/2, 24-stringSize.Height/2);
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
