@@ -23,6 +23,7 @@ namespace TrayWeek
             string inputString = greg.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek,DayOfWeek.Monday).ToString();
 
             MyNotifyIcon.Icon = StringToIcon(inputString);
+            MyNotifyIcon.ToolTipText = $"Week {inputString}";
         }
 
         public Icon StringToIcon(string input)
