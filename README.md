@@ -7,3 +7,5 @@ Implemented as a windowless WPF application for .NET 8 (runtime required).
 NuGet dependencies: [Hardcodet.NotifyIcon.Wpf](https://github.com/hardcodet/wpf-notifyicon)
 
 Users must themselves choose to permanently show the tray icon in the system settings!
+
+Zip included, follow its instructions. It's no rocket science. :)
