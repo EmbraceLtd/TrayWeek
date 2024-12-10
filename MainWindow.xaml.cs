@@ -23,20 +23,21 @@ namespace TrayWeek
             string inputString = greg.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek,DayOfWeek.Monday).ToString();
 
             MyNotifyIcon.Icon = StringToIcon(inputString);
+            MyNotifyIcon.ToolTipText = $"Vecka {inputString}";
         }
 
         public Icon StringToIcon(string input)
         {
-            Font font = new Font("Lucida Console", 16, System.Drawing.FontStyle.Regular);
+            Font font = new Font("Arial", 22, System.Drawing.FontStyle.Regular);
             Brush brush = new SolidBrush(Color.Black);
 
-            Bitmap bitmap = new Bitmap(24, 24);
+            Bitmap bitmap = new Bitmap(32, 32);
             bitmap.MakeTransparent(Color.Black);
             Graphics graphics = Graphics.FromImage(bitmap);
             var stringSize = graphics.MeasureString(input, font, 32);
 
             //graphics.Clear(Color.Black);
-            graphics.DrawString(input, font, brush, 6-stringSize.Width/2, 24-stringSize.Height/2);
+            graphics.DrawString(input, font, brush, 8-stringSize.Width/2,32-stringSize.Height/2);
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
