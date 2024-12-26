@@ -29,19 +29,30 @@ namespace TrayWeek
 
         public Icon StringToIcon(string input)
         {
-            Font font = new Font("Arial Narrow", 22, System.Drawing.FontStyle.Regular);
-
-
+            // Pen color depending on dark or light theme
             Brush brush = GetTheme() == WindowsTheme.Dark ? new SolidBrush(Color.White) : new SolidBrush(Color.Black);
+            Bitmap bitmap;
 
-            Bitmap bitmap = new Bitmap(32, 32);
-
-            bitmap.MakeTransparent(Color.White);
-            Graphics graphics = Graphics.FromImage(bitmap);
-            var stringSize = graphics.MeasureString(input, font, 256);
-
-            //graphics.Clear(Color.Black);
-            graphics.DrawString(input, font, brush, 16-stringSize.Width/2, 16-stringSize.Height/2);
+            if (Environment.OSVersion.Version.Build >= 22000)
+            {
+                // Win 11
+                Font font = new Font("Arial Narrow", 22, System.Drawing.FontStyle.Regular);
+                bitmap = new Bitmap(32, 32);
+                bitmap.MakeTransparent(Color.White);
+                Graphics graphics = Graphics.FromImage(bitmap);
+                var stringSize = graphics.MeasureString(input, font, 256);
+                graphics.DrawString(input, font, brush, 16 - stringSize.Width / 2, 16 - stringSize.Height / 2);
+            }
+            else
+            {
+                // Win 10
+                Font font = new Font("Arial", 10, System.Drawing.FontStyle.Regular);
+                bitmap = new Bitmap(16, 16);
+                bitmap.MakeTransparent(Color.White);
+                Graphics graphics = Graphics.FromImage(bitmap);
+                var stringSize = graphics.MeasureString(input, font, 24);
+                graphics.DrawString(input, font, brush, 8 - stringSize.Width / 2, 8 - stringSize.Height / 2);
+            }
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
@@ -52,16 +63,6 @@ namespace TrayWeek
         private void ContextMenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        public static bool IsWindows11()
-        {
-            var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
-
-            var currentBuildStr = (string)reg.GetValue("CurrentBuild");
-            var currentBuild = int.Parse(currentBuildStr);
-
-            return currentBuild >= 22000;
         }
 
         private enum WindowsTheme
