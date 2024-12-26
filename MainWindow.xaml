@@ -10,7 +10,7 @@
         Visibility="Hidden" WindowState="Minimized" ShowInTaskbar="False">
     <DockPanel>
         <tb:TaskbarIcon
-            x:Name="MyNotifyIcon" ToolTipText="Week">
+            x:Name="MyNotifyIcon">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Exit" Click="ContextMenuItemExit_Click">
