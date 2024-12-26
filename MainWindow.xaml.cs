@@ -24,6 +24,7 @@ namespace TrayWeek
 
             MyNotifyIcon.ToolTipText = $"Week {inputString}"; 
             MyNotifyIcon.Icon = StringToIcon(inputString);
+            MyNotifyIcon.ToolTipText = $"Week {inputString}";
         }
 
         public Icon StringToIcon(string input)
