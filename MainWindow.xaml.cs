@@ -30,9 +30,12 @@ namespace TrayWeek
         public Icon StringToIcon(string input)
         {
             Font font = new Font("Arial Narrow", 22, System.Drawing.FontStyle.Regular);
-            Brush brush = new SolidBrush(Color.Black);
+
+
+            Brush brush = GetTheme() == WindowsTheme.Dark ? new SolidBrush(Color.White) : new SolidBrush(Color.Black);
 
             Bitmap bitmap = new Bitmap(32, 32);
+
             bitmap.MakeTransparent(Color.White);
             Graphics graphics = Graphics.FromImage(bitmap);
             var stringSize = graphics.MeasureString(input, font, 256);
@@ -59,6 +62,21 @@ namespace TrayWeek
             var currentBuild = int.Parse(currentBuildStr);
 
             return currentBuild >= 22000;
+        }
+
+        private enum WindowsTheme
+        {
+            Dark,
+            Light
+        }
+
+        private static WindowsTheme GetTheme()
+        {
+            var taskBarColour = Taskbar.GetColourAt(Taskbar.GetTaskbarPosition().Location);
+            if (taskBarColour.Name == "ffb7bec4")
+                return WindowsTheme.Light;
+            else
+                return WindowsTheme.Dark;
         }
     }
 }
