@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using Microsoft.Win32;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.Text;
@@ -20,23 +21,24 @@ namespace TrayWeek
         public void Draw()
         {
             var greg = new GregorianCalendar();
-            string inputString = greg.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek,DayOfWeek.Monday).ToString();
+            string inputString = greg.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday).ToString();
 
+            MyNotifyIcon.ToolTipText= $"Vecka {inputString}";
             MyNotifyIcon.Icon = StringToIcon(inputString);
         }
 
         public Icon StringToIcon(string input)
         {
-            Font font = new Font("Lucida Console", 16, System.Drawing.FontStyle.Regular);
+            Font font = new Font("Arial Narrow", 22, System.Drawing.FontStyle.Regular);
             Brush brush = new SolidBrush(Color.Black);
 
-            Bitmap bitmap = new Bitmap(24, 24);
-            bitmap.MakeTransparent(Color.Black);
+            Bitmap bitmap = new Bitmap(32, 32);
+            bitmap.MakeTransparent(Color.White);
             Graphics graphics = Graphics.FromImage(bitmap);
-            var stringSize = graphics.MeasureString(input, font, 32);
+            var stringSize = graphics.MeasureString(input, font, 256);
 
             //graphics.Clear(Color.Black);
-            graphics.DrawString(input, font, brush, 6-stringSize.Width/2, 24-stringSize.Height/2);
+            graphics.DrawString(input, font, brush, 16-stringSize.Width/2, 16-stringSize.Height/2);
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
@@ -47,6 +49,16 @@ namespace TrayWeek
         private void ContextMenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public static bool IsWindows11()
+        {
+            var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            var currentBuildStr = (string)reg.GetValue("CurrentBuild");
+            var currentBuild = int.Parse(currentBuildStr);
+
+            return currentBuild >= 22000;
         }
     }
 }
