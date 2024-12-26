@@ -23,7 +23,7 @@ namespace TrayWeek
             var greg = new GregorianCalendar();
             string inputString = greg.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday).ToString();
 
-            MyNotifyIcon.ToolTipText= $"Vecka {inputString}";
+            MyNotifyIcon.ToolTipText= $"Week {inputString}";
             MyNotifyIcon.Icon = StringToIcon(inputString);
         }
 
