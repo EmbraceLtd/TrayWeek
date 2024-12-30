@@ -1,7 +1,7 @@
 TrayWeek
 ========
 
-Displays the current week number in the windows tray, according to week 1 being "first-four-days" and Monday being the first day of the week.
+Displays the current week number in the windows tray, according ISO 8601 week numbers.
 
 Implemented as a windowless WPF application for .NET 8 (runtime required).  
 NuGet dependencies: [Hardcodet.NotifyIcon.Wpf](https://github.com/hardcodet/wpf-notifyicon)
