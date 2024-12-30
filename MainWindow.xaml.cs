@@ -20,8 +20,7 @@ namespace TrayWeek
 
         public void Draw()
         {
-            var greg = new GregorianCalendar();
-            string inputString = greg.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday).ToString();
+            string inputString = GetIso8601WeekOfYear(DateTime.Now.Date).ToString();
 
             MyNotifyIcon.ToolTipText = $"Week {inputString}"; 
             MyNotifyIcon.Icon = StringToIcon(inputString);
@@ -78,6 +77,14 @@ namespace TrayWeek
                 return WindowsTheme.Light;
             else
                 return WindowsTheme.Dark;
+        }
+
+        public static int GetIso8601WeekOfYear(DateTime date)
+        {
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(date);
+                date = date.AddDays(3);
+
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
     }
 }
