@@ -74,6 +74,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -184,7 +192,7 @@
         "Manufacturer" = "8:Uggadunk V3.0"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:TrayWeekSetup"
+        "Title" = "8:TrayWeek"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Tommy Sjöblom"
         "Keywords" = "8:"
