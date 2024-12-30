@@ -73,7 +73,7 @@ namespace TrayWeek
         private static WindowsTheme GetTheme()
         {
             var taskBarColour = Taskbar.GetColourAt(Taskbar.GetTaskbarPosition().Location);
-            if (taskBarColour.Name == "ffb7bec4")
+            if (taskBarColour.Name == "ffb7bec4" || taskBarColour.Name == "ffcbe5ef")
                 return WindowsTheme.Light;
             else
                 return WindowsTheme.Dark;
