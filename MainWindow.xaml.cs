@@ -28,30 +28,21 @@ namespace TrayWeek
 
         public Icon StringToIcon(string input)
         {
-            // Pen color depending on dark or light theme
-            Brush brush = GetTheme() == WindowsTheme.Dark ? new SolidBrush(Color.White) : new SolidBrush(Color.Black);
-            Bitmap bitmap;
+            var fgColor = Color.Black;
+            var bgColor = Color.White;
 
-            if (Environment.OSVersion.Version.Build >= 22000)
-            {
-                // Win 11
-                Font font = new Font("Arial Narrow", 22, System.Drawing.FontStyle.Regular);
-                bitmap = new Bitmap(32, 32);
-                bitmap.MakeTransparent(Color.White);
-                Graphics graphics = Graphics.FromImage(bitmap);
-                var stringSize = graphics.MeasureString(input, font, 256);
-                graphics.DrawString(input, font, brush, 16 - stringSize.Width / 2, 16 - stringSize.Height / 2);
-            }
-            else
-            {
-                // Win 10
-                Font font = new Font("Arial", 10, System.Drawing.FontStyle.Regular);
-                bitmap = new Bitmap(16, 16);
-                bitmap.MakeTransparent(Color.White);
-                Graphics graphics = Graphics.FromImage(bitmap);
-                var stringSize = graphics.MeasureString(input, font, 24);
-                graphics.DrawString(input, font, brush, 8 - stringSize.Width / 2, 8 - stringSize.Height / 2);
-            }
+            Bitmap bitmap;
+            var baseSize = Environment.OSVersion.Version.Build >= 22000 ? 2 : 1;
+            var bitmapSize = 16 * baseSize;
+            var fontSize = 10 * baseSize;
+
+            Font font = new Font("Arial Narrow", fontSize, System.Drawing.FontStyle.Regular);
+            bitmap = new Bitmap(bitmapSize, bitmapSize);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            var stringSize = graphics.MeasureString(input, font, 256);
+            graphics.FillRectangle(new SolidBrush(bgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
+            graphics.DrawRectangle(new Pen(fgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
+            graphics.DrawString(input, font, new SolidBrush(fgColor), bitmapSize / 2 - stringSize.Width / 2, bitmapSize / 2 - stringSize.Height / 2 + (baseSize == 2 ? 2 : 0));
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
@@ -62,21 +53,6 @@ namespace TrayWeek
         private void ContextMenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        private enum WindowsTheme
-        {
-            Dark,
-            Light
-        }
-
-        private static WindowsTheme GetTheme()
-        {
-            var taskBarColour = Taskbar.GetColourAt(Taskbar.GetTaskbarPosition().Location);
-            if (taskBarColour.Name == "ffb7bec4" || taskBarColour.Name == "ffcbe5ef")
-                return WindowsTheme.Light;
-            else
-                return WindowsTheme.Dark;
         }
 
         public static int GetIso8601WeekOfYear(DateTime date)
