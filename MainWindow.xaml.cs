@@ -32,9 +32,8 @@ namespace TrayWeek
             var bgColor = Color.White;
 
             Bitmap bitmap;
-            var baseSize = Environment.OSVersion.Version.Build >= 22000 ? 2 : 1;
-            var bitmapSize = 16 * baseSize;
-            var fontSize = 10 * baseSize;
+            var bitmapSize = 16;
+            var fontSize = 10;
 
             Font font = new Font("Arial Narrow", fontSize, System.Drawing.FontStyle.Regular);
             bitmap = new Bitmap(bitmapSize, bitmapSize);
@@ -42,7 +41,7 @@ namespace TrayWeek
             var stringSize = graphics.MeasureString(input, font, 256);
             graphics.FillRectangle(new SolidBrush(bgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
             graphics.DrawRectangle(new Pen(fgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
-            graphics.DrawString(input, font, new SolidBrush(fgColor), bitmapSize / 2 - stringSize.Width / 2, bitmapSize / 2 - stringSize.Height / 2 + (baseSize == 2 ? 2 : 0));
+            graphics.DrawString(input, font, new SolidBrush(fgColor), bitmapSize / 2 - stringSize.Width / 2, bitmapSize / 2 - stringSize.Height / 2);
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
