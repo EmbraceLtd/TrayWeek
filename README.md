@@ -6,9 +6,14 @@ Description
 
 Displays the current week number in the windows tray, according to ISO 8601 (Swedish standard).
 
-ISO 8601 states that the first week of the year is the week that contains the first Thursday of the year. 
+ISO 8601 states that 
 
-Furthermore, weeks do not change number in the middle of the week if New Year occurs during the week.
+* Weeks start on a Monday and end on a Sunday.
+* The first week of the year is the week that contains the first Thursday of the year. 
+* Week 1 is called week 1 throughout the whole week.
+
+Example: Week 1 of 2025 starts on Monday 30 Dec, 2024 and is called week 1 during the whole week, which lasts until Sunday Jan 5, 2025.
+
 
 Tech
 ----
@@ -16,8 +21,4 @@ Tech
 Implemented as a windowless WPF application for .NET 8 (runtime required).  
 NuGet dependencies: [Hardcodet.NotifyIcon.Wpf](https://github.com/hardcodet/wpf-notifyicon)
 
-The application will try and detect Windows version and Windows theme (dark or light), for best results.
-
 Users must themselves choose to permanently show the tray icon in the system settings!
-
-A setup project is included that produces a msi file when built.
