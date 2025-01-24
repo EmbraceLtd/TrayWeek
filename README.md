@@ -20,7 +20,7 @@ Example: Week 1 of 2025 starts on Monday 30 Dec, 2024 and is called week 1 durin
 Tech
 ----
 
-Implemented as a windowless WPF application for .NET 8 (runtime required).  
+Implemented as a windowless WPF application for .NET 8 ([runtime required](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)).  
 NuGet dependencies: [Hardcodet.NotifyIcon.Wpf](https://github.com/hardcodet/wpf-notifyicon)
 
 Users must themselves choose to permanently show the tray icon in the system settings!
