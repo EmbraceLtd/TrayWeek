@@ -14,7 +14,7 @@ ISO 8601 states that
 * The first week of the year is the week that contains the first Thursday of the year. 
 * Week 1 is called week 1 throughout the whole week.
 
-Example: Week 1 of 2025 starts on Monday 30 Dec, 2024 and is called week 1 during the whole week, which lasts until Sunday Jan 5, 2025.
+Example: Week 1 of 2025 starts on Monday 30 Dec, 2024 and is called week 1 during the whole week, which lasts until Sunday 5 Jan, 2025.
 
 
 Tech
