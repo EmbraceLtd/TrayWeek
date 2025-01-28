@@ -54,6 +54,11 @@ namespace TrayWeek
             Application.Current.Shutdown();
         }
 
+        private void ContextMenuItemAbout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("TrayWeek 1.0\r\n\r\n© Tommy Sjöblom 2025\r\n\r\nhttps://github.com/EmbraceLtd/TrayWeek", "About", MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+        }
+
         public static int GetIso8601WeekOfYear(DateTime date)
         {
             DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(date);

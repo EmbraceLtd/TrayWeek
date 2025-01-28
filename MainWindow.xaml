@@ -13,8 +13,8 @@
             x:Name="MyNotifyIcon">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Exit" Click="ContextMenuItemExit_Click">
-                    </MenuItem>
+                    <MenuItem Header="About" Click="ContextMenuItemAbout_Click"></MenuItem>
+                    <MenuItem Header="Exit" Click="ContextMenuItemExit_Click"></MenuItem>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
