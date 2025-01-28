@@ -33,15 +33,15 @@ namespace TrayWeek
 
             Bitmap bitmap;
             var bitmapSize = 16;
-            var fontSize = 10;
+            var fontSize = 8;
 
-            Font font = new Font("Arial Narrow", fontSize, System.Drawing.FontStyle.Regular);
+            Font font = new Font("Segoe UI", fontSize, System.Drawing.FontStyle.Regular);
             bitmap = new Bitmap(bitmapSize, bitmapSize);
             Graphics graphics = Graphics.FromImage(bitmap);
             var stringSize = graphics.MeasureString(input, font, 256);
             graphics.FillRectangle(new SolidBrush(bgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
             graphics.DrawRectangle(new Pen(fgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
-            graphics.DrawString(input, font, new SolidBrush(fgColor), bitmapSize / 2 - stringSize.Width / 2, bitmapSize / 2 - stringSize.Height / 2);
+            graphics.DrawString(input, font, new SolidBrush(fgColor), bitmapSize / 2 - stringSize.Width / 2, bitmapSize / 2 - stringSize.Height / 2 + 1);
 
             var iconHandle = bitmap.GetHicon();
             var icon = System.Drawing.Icon.FromHandle(iconHandle);
