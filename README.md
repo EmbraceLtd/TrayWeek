@@ -23,5 +23,5 @@ Tech
 Implemented as a windowless WPF application for .NET 8 ([runtime required](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)).  
 NuGet dependencies: [Hardcodet.NotifyIcon.Wpf](https://github.com/hardcodet/wpf-notifyicon)
 
-Users must themselves choose to permanently show the tray icon in the system settings, if desired. [How to do that.](https://support.microsoft.com/en-us/windows/customize-the-taskbar-notification-area-e159e8d2-9ac5-b2bd-61c5-bb63c1d437c3)  
+Users must themselves choose in the system settings to permanently show the tray icon, if desired. [How to do that.](https://support.microsoft.com/en-us/windows/customize-the-taskbar-notification-area-e159e8d2-9ac5-b2bd-61c5-bb63c1d437c3)  
 Otherwise it will be hidden and will only be shown with the **Show hidden icons** button.
