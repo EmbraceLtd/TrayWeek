@@ -34,7 +34,7 @@ namespace TrayWeek
             var font = new Font("Segoe UI", fontSize, System.Drawing.FontStyle.Regular);
             var bitmap = new Bitmap(bitmapSize, bitmapSize);
 
-            Graphics graphics = Graphics.FromImage(bitmap);
+            var graphics = Graphics.FromImage(bitmap);
             var stringSize = graphics.MeasureString(input, font, 256);
             graphics.FillRectangle(new SolidBrush(bgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
             graphics.DrawRectangle(new Pen(fgColor), 0, 0, bitmapSize - 1, bitmapSize - 1);
