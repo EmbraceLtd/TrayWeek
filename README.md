@@ -25,3 +25,5 @@ NuGet dependencies: [Hardcodet.NotifyIcon.Wpf](https://github.com/hardcodet/wpf-
 
 Users must themselves choose in the system settings to permanently show the tray icon, if desired. [How to do that.](https://support.microsoft.com/en-us/windows/customize-the-taskbar-notification-area-e159e8d2-9ac5-b2bd-61c5-bb63c1d437c3)  
 Otherwise it will be hidden and will only be shown with the **Show hidden icons** button.
+
+Tested on both Windows 10 and 11, with both dark and light themes.
