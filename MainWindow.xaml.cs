@@ -19,7 +19,7 @@ namespace TrayWeek
         {
             string inputString = GetIso8601WeekOfYear(DateTime.Now.Date).ToString();
 
-            MyNotifyIcon.ToolTipText = $"Week {inputString}"; 
+            MyNotifyIcon.ToolTipText = $"Week {inputString}";
             MyNotifyIcon.Icon = StringToIcon(inputString);
         }
 
@@ -33,7 +33,7 @@ namespace TrayWeek
 
             var font = new Font("Segoe UI", fontSize, System.Drawing.FontStyle.Regular);
             var bitmap = new Bitmap(bitmapSize, bitmapSize);
-            var extraOffset = input.Length == 2 && input.Substring(0, 1) == "1" ? -1 : 0;
+            var extraOffset = (new[] { "10", "12", "13", "14", "15", "16", "17", "18", "19" }).Contains(input) ? -1 : 0;
 
             var graphics = Graphics.FromImage(bitmap);
             var stringSize = graphics.MeasureString(input, font, 256);
